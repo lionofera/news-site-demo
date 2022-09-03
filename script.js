@@ -27,21 +27,22 @@
 
     const displayCategoryNews = allnews => {
         
-        
         const allNewsContainer = document.getElementById('all-news');
-        allnews.forEach(news => {
+        //console.log(allnews);
+
         const newsDiv = document.createElement('div');
+        allNewsContainer.innerHTML = "";
         newsDiv.classList.add('news');
         newsDiv.innerHTML = `
         <div class="card mb-3" style="max-width: 540px;">
           <div class="row g-0">
             <div class="col-md-4">
-               <img src="..." class="img-fluid rounded-start" alt="...">
+               <img src="${allnews.thumbnail_url? allnews.thumbnail_url : 'no image!'}" class="img-fluid rounded-start" alt="...">
             </div>
            <div class="col-md-8">
            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 class="card-title">${allnews.title}</h5>
+              <p class="card-text text-truncate">${allnews.details.slice(0,250)}</p>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
            </div>
           </div>
@@ -49,8 +50,7 @@
         </div>
         `;
         allNewsContainer.appendChild(newsDiv);
-    })
-
-    }
+  
+      }
 
     loadData()
