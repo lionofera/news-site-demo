@@ -43,7 +43,11 @@
            <div class="card-body">
               <h5 class="card-title">${allnews.title}</h5>
               <p class="card-text text-truncate">${allnews.details.slice(0,250)}</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <div class="d-flex justify-content-center align-items-center space-around">
+              <img src="${allnews.author.img}" class="rounded-circle w-25" alt="...">
+              <h5>${allnews.author.name}</h5>
+              <p class=""><i class="fa-solid fa-eye"></i>${allnews.total_view}</p>
+              </div>
            </div>
           </div>
          </div>
