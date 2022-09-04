@@ -13,8 +13,20 @@
         categoryDiv.innerHTML = `
         <h3 class="p-3" onclick="showNewsInCategory('${category.category_id}')">${category.category_name}</h3>
         `;
+        toggleSpinner(true);
         categoriesContainer.appendChild(categoryDiv);
     })
+    toggleSpinner(false);
+    }
+
+    const toggleSpinner = isLoading => {
+      const loaderSection = document.getElementById('spinner');
+      if (isLoading)
+      {
+         loaderSection.classList.remove('d-none')
+      } else {
+         loaderSection.classList.add('d-none');
+      }
     }
 
     const showNewsInCategory = (id) => {
@@ -55,7 +67,6 @@
         //
         allNewsContainer.appendChild(newsDiv);
       })
-  
       }
       const showMore = async news_id => {
          const url= ` https://openapi.programming-hero.com/api/news/${news_id}`;
