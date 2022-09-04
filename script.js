@@ -45,20 +45,30 @@
                 <img src="${news.author.img}" class="rounded-circle w-25" alt="...">
                 <h5>${news.author.name}</h5>
                 <p class=""><i class="fa-solid fa-eye"></i>${news.total_view}</p>
-                <button onclick = "showMore()"><i class="fa-solid fa-angles-right"></i></button>
-
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#showNewsDetailsModal" onclick = "showMore('${news._id}')"><i class="fa-solid fa-angles-right"></i></button>
               </div>
            </div>
           </div>
          </div>
         </div>
         `;
+        //
         allNewsContainer.appendChild(newsDiv);
       })
   
       }
-      const showMore = () => {
-         
+      const showMore = async news_id => {
+         const url= ` https://openapi.programming-hero.com/api/news/${news_id}`;
+         const res = await fetch(url);
+         const data = await res.json();
+         showNewsDetails(data.data[0]);
+      }
+
+      const showNewsDetails = news => {
+         const modalTitle = document.getElementById('showNewsDetailsModalLabel');
+         modalTitle.innerText = news.title;
+         const modalPublish = document.getElementById('showPublishDetails');
+         modalPublish.innerText = news.author.published_date;
       }
 
     loadData()
